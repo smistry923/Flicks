@@ -5,12 +5,13 @@
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/ivPosterImage"
+        android:id="@+id/frontPic"
         android:layout_width="90dp"
         android:layout_height="135dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight = "5dp"
+
         app:srcCompat="@android:color/black" />
 
     <TextView
@@ -18,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/ivPosterImage"
+        android:layout_toRightOf="@+id/frontPic"
         android:text="Movie Title"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:layout_alignParentRight="true"
@@ -29,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
-        android:layout_toRightOf="@+id/ivPosterImage"
+        android:layout_toRightOf="@+id/frontPic"
         android:text="Movie overview and synopsis"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

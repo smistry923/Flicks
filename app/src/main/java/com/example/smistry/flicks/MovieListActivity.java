@@ -145,4 +145,5 @@ public class MovieListActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), message,Toast.LENGTH_LONG).show();
         }
     }
+
 }
