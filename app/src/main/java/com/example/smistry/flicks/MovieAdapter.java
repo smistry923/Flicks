@@ -1,6 +1,7 @@
 package com.example.smistry.flicks;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.smistry.flicks.models.Config;
 import com.example.smistry.flicks.models.Movie;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -37,6 +40,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
     public void setConfig(Config config) {
         this.config = config;
     }
+    
+    //comment
 
     //creates and inflates a new view
     @Override
@@ -93,7 +98,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
     }
 
     // create the viewholder as a static inner class
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         //track view objects
         ImageView ivPosterImage;
@@ -104,10 +109,29 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //lookup view objects by id
-            ivPosterImage = (ImageView) itemView.findViewById(R.id.ivPosterImage);
+            ivPosterImage = (ImageView) itemView.findViewById(R.id.frontPic);
             ivBackdropImage = (ImageView) itemView.findViewById(R.id.ivBackdropImage);
             tvOverview = (TextView) itemView.findViewById(R.id.tvOverview);
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
+            itemView.setOnClickListener(this);
         }
+        // when the user clicks on a row, show MovieDetailsActivity for the selected movie
+        @Override
+        public void onClick(View v) {
+            // gets item position
+            int position = getAdapterPosition();
+            // make sure the position is valid, i.e. actually exists in the view
+            if (position != RecyclerView.NO_POSITION) {
+                // get the movie at the position, this won't work if the class is static
+                Movie movie = movies.get(position);
+                // create intent for the new activity
+                Intent intent = new Intent(context, MovieDetailsActivity.class);
+                // serialize the movie using parceler, use its short name as a key
+                intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
+                // show the activity
+                context.startActivity(intent);
+            }
+        }
+
     }
 }
