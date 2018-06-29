@@ -28,6 +28,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
     //context for rendering
     Context context;
 
+    public  static final String imageUrl_front ="imageUrl_front";
+    public  static final String imageUrl_back = "imageUrl_back";
+
     //initialize with list
     public MovieAdapter(ArrayList<Movie> movies) {
         this.movies = movies;
@@ -109,7 +112,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //lookup view objects by id
-            ivPosterImage = (ImageView) itemView.findViewById(R.id.frontPic);
+            ivPosterImage = (ImageView) itemView.findViewById(R.id.ivPosterImage);
             ivBackdropImage = (ImageView) itemView.findViewById(R.id.ivBackdropImage);
             tvOverview = (TextView) itemView.findViewById(R.id.tvOverview);
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
@@ -128,6 +131,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                 Intent intent = new Intent(context, MovieDetailsActivity.class);
                 // serialize the movie using parceler, use its short name as a key
                 intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
+
+                intent.putExtra(imageUrl_front,config.getImageUrl(config.getPosterSize(),movie.getPosterPath()));
+
+                intent.putExtra(imageUrl_back,config.getImageUrl(config.getBackdropSize(),movie.getBackdropPath()));
                 // show the activity
                 context.startActivity(intent);
             }
