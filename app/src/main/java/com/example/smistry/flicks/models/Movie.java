@@ -11,6 +11,7 @@ public @Parcel class Movie  {
     public String posterPath; // only the path
     public String backdropPath;
     public Double voteAverage;
+    public Integer id;
 
 
     // no-arg, empty constructor required for Parceler
@@ -27,6 +28,7 @@ public @Parcel class Movie  {
         posterPath = object.getString("poster_path");
         backdropPath = object.getString("backdrop_path");
         voteAverage = object.getDouble("vote_average");
+        id = object.getInt("id"); //TODO
 
     }
 
@@ -44,5 +46,9 @@ public @Parcel class Movie  {
 
     public String getBackdropPath() {
         return backdropPath;
+    }
+
+    public Integer getId() {
+        return id;
     }
 }

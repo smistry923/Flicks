@@ -1,9 +1,11 @@
 package com.example.smistry.flicks;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -30,7 +32,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
     ImageView backPic;
     //config needed for image url
     Config config;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
         // vote average is 0..10, convert to 0..5 by dividing by 2
         float voteAverage = movie.getVoteAverage().floatValue();
         rbVoteAverage.setRating(voteAverage = voteAverage > 0 ? voteAverage / 2.0f : voteAverage);
-
-
     }
+
+    public void loadTrailer(View view) {
+        Intent trailer_load = new Intent(this, MovieTrailerActivity.class);
+        trailer_load.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
+        this.startActivity(trailer_load);
+    }
+
 }
