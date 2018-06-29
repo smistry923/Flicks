@@ -16,6 +16,9 @@ import com.example.smistry.flicks.models.Movie;
 
 import org.parceler.Parcels;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.example.smistry.flicks.MovieAdapter.imageUrl_back;
 import static com.example.smistry.flicks.MovieAdapter.imageUrl_front;
 
@@ -25,11 +28,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
     Movie movie;
 
     // the view objects
-    TextView tvTitle;
-    TextView tvOverview;
-    RatingBar rbVoteAverage;
-    ImageView frontPic;
-    ImageView backPic;
+    @BindView(R.id.tvTitle) TextView tvTitle;
+    @BindView(R.id.tvOverview)TextView tvOverview;
+    @BindView(R.id.rbVoteAverage)RatingBar rbVoteAverage;
+    @BindView(R.id.frontPic) ImageView frontPic;
+    @BindView(R.id.backPic) ImageView backPic;
     //config needed for image url
     Config config;
 
@@ -38,10 +41,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
         // resolve the view objects
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
-        tvOverview = (TextView) findViewById(R.id.tvOverview);
-        rbVoteAverage = (RatingBar) findViewById(R.id.rbVoteAverage);
-
+        ButterKnife.bind(this);
         // unwrap the movie passed in via intent, using its simple name as a key
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
         Log.d("MovieDetailsActivity", String.format("Showing details for '%s'", movie.getTitle()));
@@ -50,9 +50,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
         tvOverview.setMovementMethod(new ScrollingMovementMethod());
-
-        frontPic = (ImageView) findViewById(R.id.frontPic);
-        backPic = (ImageView) findViewById(R.id.backPic);
 
         //build url for poster image
 
