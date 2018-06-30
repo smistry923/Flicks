@@ -41,6 +41,10 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
         // temporary test video id -- TODO replace with movie trailer video id
         //final String videoId = "tKodtNFpzBA";
 
+        // resolve the player view from the layout
+        movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
+        Log.d("MovieDetailsActivity", String.format("Showing details for %s", movie.getTitle()));
+        getTrailer();
 
     }
         //get the list of currently playing movies from the  API
