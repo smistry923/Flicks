@@ -26,6 +26,7 @@ The following **additional** features are implemented:
 
 * [x] Improved design for details page
 * [x] Linked the trailer to the picture in the details
+* [x] Added scrollable feature for details page
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
